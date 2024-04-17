@@ -1,0 +1,30 @@
+.box {
+	border: 1px solid #bebebe;
+	border-radius: 8px;
+	padding: 0.5rem 1rem;
+	margin-top: 0.5rem;
+}
+
+.item_wrapper {
+	width: 100%;
+}
+
+.item_root {
+	padding: 3px 0;
+	margin-bottom: 3px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.item_label {
+	padding-left: 10px;
+	width: 100%;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.flex {
+	padding-right: 1rem;
+}

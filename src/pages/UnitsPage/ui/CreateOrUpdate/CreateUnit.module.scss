@@ -1,0 +1,11 @@
+.box {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.label {
+	margin-bottom: 5px !important;
+	font-size: 14px !important;
+	color: #868e96;
+}

@@ -1,0 +1,17 @@
+.buttons {
+	gap: 10px;
+	display: flex;
+	margin-top: 50px;
+	align-items: baseline;
+	justify-content: space-between;
+}
+
+.buttons_inner {
+	display: flex;
+	gap: 5px;
+}
+
+.column {
+	cursor: pointer;
+	user-select: none;
+}

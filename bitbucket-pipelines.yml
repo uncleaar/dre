@@ -1,0 +1,49 @@
+image: node:18
+
+pipelines:
+  default:
+    - parallel:
+        - step:
+            name: Build and Test
+            caches:
+              - node
+            script:
+              - npm install
+              # CI=true in default variables for Bitbucket Pipelines https://support.atlassian.com/bitbucket-cloud/docs/variables-in-pipelines/
+        - step:
+            name: Lint the node package
+            script:
+              # Run your linter of choice here
+              - npm install eslint
+              - npm run lint:ts:fix
+              - npm install prettier
+              - npm run prettier -- --write
+            caches:
+              - node
+  branches:
+    dev:
+      - parallel:
+          - step:
+              name: Build and Test
+              caches:
+                - node
+              script:
+                - npm install
+                - npm run build:staging
+              artifacts:
+                - dist/**
+      - step:
+          name: Deploy to Staging
+          deployment: Production
+          trigger: manual
+          clone:
+            enabled: false
+          script:
+            # sync your files to S3
+            - pipe: atlassian/aws-s3-deploy:1.1.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: 'dre-adminn-panel'
+                LOCAL_PATH: 'dist'

@@ -1,0 +1,8 @@
+.treeNode {
+	cursor: pointer;
+	user-select: none;
+}
+
+.treeNode:hover {
+	background-color: #f0f0f0;
+}
